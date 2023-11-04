@@ -1,4 +1,8 @@
 ActiveAdmin.register AdminUser do
+  controller do
+    skip_before_action :authenticate_active_admin_user, only: :new
+  end
+
   permit_params :email, :password, :password_confirmation
 
   index do
@@ -22,7 +26,7 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :password_confirmation
     end
+
     f.actions
   end
-
 end
