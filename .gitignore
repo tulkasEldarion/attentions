@@ -33,3 +33,5 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+render.yml
+.vscode/settings.json

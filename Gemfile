@@ -8,9 +8,6 @@ gem 'rails', '~> 7.1.1'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
-
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
 
@@ -55,6 +52,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
 
   gem 'rubocop'
+
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -68,10 +68,13 @@ group :development do
   # gem "spring"
 end
 
+group :production do
+  # Use postgresql for Active Record
+  gem 'pg'
+end
+
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
 end
-
-gem "tailwindcss-rails", "~> 2.0"
