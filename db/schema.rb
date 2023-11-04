@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_03_223043) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_04_141025) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -35,6 +35,63 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_03_223043) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "attentions", force: :cascade do |t|
+    t.string "name"
+    t.date "datetime"
+    t.string "reason"
+    t.integer "professional_id"
+    t.integer "patient_id"
+    t.integer "service_id"
+    t.integer "institution_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["institution_id"], name: "index_attentions_on_institution_id"
+    t.index ["name"], name: "index_attentions_on_name", unique: true
+    t.index ["patient_id"], name: "index_attentions_on_patient_id"
+    t.index ["professional_id"], name: "index_attentions_on_professional_id"
+    t.index ["service_id"], name: "index_attentions_on_service_id"
+  end
+
+  create_table "follow_ups", force: :cascade do |t|
+    t.integer "attentions_id"
+    t.date "date"
+    t.string "observations"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attentions_id"], name: "index_follow_ups_on_attentions_id"
+  end
+
+  create_table "institutions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_institutions_on_name", unique: true
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "id_number"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id_number"], name: "index_patients_on_id_number", unique: true
+  end
+
+  create_table "professionals", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_services_on_name", unique: true
   end
 
 end
