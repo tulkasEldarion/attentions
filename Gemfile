@@ -68,10 +68,10 @@ group :development do
   # gem "spring"
 end
 
-group :production do
-  # Use postgresql for Active Record
-  gem 'pg'
-end
+# group :production do
+#   # Use postgresql for Active Record
+#   gem 'pg'
+# end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
